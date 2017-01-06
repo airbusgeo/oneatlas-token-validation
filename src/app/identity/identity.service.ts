@@ -18,7 +18,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class IdentityService {
 
-  endpoint: string = 'https://view.geoapi-airbusds.com/api/v1/me';
+  endpoint: string = 'https://view.geoapi-airbusds.com/api/v1/me?validatetoken=true';
 
   constructor(private http: Http) {}
 
