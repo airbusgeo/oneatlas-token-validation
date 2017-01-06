@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">
+        <span><img src="assets/logo.png" alt="airbusdsgeo"></span>
+        OneAtlas Token Checker
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+
+  <form>
+    <div class="form-group">
+      <label for="token">Enter token here</label>
+      <textarea id="token" type="text" class="form-control" rows="5" [formControl]="tokenControl"></textarea>
+    </div>
+  </form>
+
+  <div *ngIf="error && identity === null" class="alert alert-danger" role="alert">
+    <div>Token Invalid :</div>
+    <pre>{{ error | json }}</pre>
+  </div>
+
+  <div class="panel panel-success" *ngIf="identity && error === null">
+    <div class="panel-heading">
+      <h3 class="panel-title">Account information</h3>
+    </div>
+    <div class="panel-body">
+      <dl>
+        <dt>Email :</dt>
+        <dd>{{ identity.email }}</dd>
+      </dl>
+
+      <dl *ngIf="tokenDecoded.auth_time > 0">
+        <dt>Authentification date :</dt>
+        <dd>{{ tokenDecoded.auth_time * 1000 | date:'medium' }}</dd>
+      </dl>
+
+      <dl *ngIf="tokenDecoded.exp > 0">
+        <dt>Expiration date :</dt>
+        <dd>{{ tokenDecoded.exp * 1000 | date:'medium' }}</dd>
+      </dl>
+    </div>
+  </div>
+
+</div>
